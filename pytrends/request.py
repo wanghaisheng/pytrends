@@ -15,7 +15,16 @@ from urllib.parse import quote
 
 BASE_TRENDS_URL = 'https://trends.google.com/trends'
 
-
+country_codes = [
+    'cy', 'pe', 'hk', 'co', 'mx', 'br', 'ua', 'ng', 'ph', 'au',
+    'tr', 'vn', 'tw', 'ar', 'gi', 'my', 'gh', 'ec', 'na', 'sb',
+    'ni', 'gt', 'pr', 'sg', 'bh', 'nf', 'pl', 'bo', 'ag', 'om',
+    'sa', 'bn', 'lb', 'pk', 'py', 'qa', 'ru', 'pa', 'cu', 'np',
+    'sl', 'do', 'sv', 'mt', 'eg', 'kw', 'et', 'ly', 'fj', 'jm',
+    'kh', 'uy', 'bd', 'mm', 'vc', 'af', 'tj', 'ai', 'bz', 'pg',
+    'by', 'iq', 'tn', 'ge', 'kz', 'gr', 'jo', 'nr', 've', 'lv',
+    'pt', 'dz', 'ht', 'gy', 'bi', 'ps', 'gp', 'am'
+]
 class TrendReq(object):
     """
     Google Trends API
@@ -30,7 +39,7 @@ class TrendReq(object):
         """
         Initialize default values for params
         """
-        self.BASE_TRENDS_URL = base_url if base_url is not None else 'https://trends.google.com/trends'
+        self.BASE_TRENDS_URL = f'https://trends.google.com.{base_url}/trends' if base_url is not None and base_url in country_codes else 'https://trends.google.com/trends'
 
         self.GENERAL_URL = f'{self.BASE_TRENDS_URL}/api/explore'
         self.INTEREST_OVER_TIME_URL = f'{self.BASE_TRENDS_URL}/api/widgetdata/multiline'
