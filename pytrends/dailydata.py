@@ -45,7 +45,7 @@ def _fetch_data(pytrends, build_payload, timeframe: str) -> pd.DataFrame:
     return pytrends.interest_over_time()
 
 
-def get_daily_data(word: str,
+async def get_daily_data(word: str,
                  start_year: int,
                  start_mon: int,
                  stop_year: int,
@@ -96,7 +96,7 @@ def get_daily_data(word: str,
     # Start pytrends for US region
     pytrends = TrendReq(hl='en-US', tz=360)
     # Initialize build_payload with the word we need data for
-    build_payload = partial(pytrends.build_payload,
+    build_payload = partial(await pytrends.build_payload,
                             kw_list=[word], cat=0, geo=geo, gprop='')
 
     # Obtain monthly data for all months in years [start_year, stop_year]
