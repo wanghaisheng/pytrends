@@ -1,4 +1,4 @@
-requests
+aiohttp
 pandas
 lxml
-PySocks
+aiohttp_socks
